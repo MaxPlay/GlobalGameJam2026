@@ -3,7 +3,12 @@ guid: 9ae6548747ce02a4caf6fbc4327ee4b4
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: tex_House_small
+    second: {fileID: 2800000, guid: 4c7b623e77ef1514aa9ac9792af0052b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
