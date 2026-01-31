@@ -238,9 +238,10 @@ GameObject:
   m_Component:
   - component: {fileID: 218607281295425587}
   - component: {fileID: 2855430867262674146}
+  - component: {fileID: 8238937242725629651}
   - component: {fileID: 4961492936772580732}
   - component: {fileID: 6663884862256991466}
-  - component: {fileID: 4165768782371561725}
+  - component: {fileID: 2118647502669727982}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -277,8 +278,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c06582704c79c4ba4dfb4bfd92b7dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  sprite: {fileID: 3914737766227841952}
-  speed: 3
+  speed: 1
+  sprintSpeed: 0
+--- !u!114 &8238937242725629651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4472231152488332029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ab54876c488524e9e227ff7483d6a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  hitPoints: 100
+  maskPoints: 200
+  distanceMaskReductionMultiplier: 1
+  sprintingMaskReductionMultiplier: 1
 --- !u!54 &4961492936772580732
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -329,7 +346,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!143 &4165768782371561725
+--- !u!143 &2118647502669727982
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,15 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
     private GameStateManager currentStateManager;
+    private InputActionMap playerActionMap;
 
     public T GetStateManager<T>() where T : GameStateManager => currentStateManager as T;
 
     public static Game Instance { get; private set; }
     public GameConfiguration Configuration { get; private set; }
+
     public GameState CurrentState { get; private set; }
 
     public enum GameState
@@ -43,6 +46,8 @@ public class Game : MonoBehaviour
     {
         Instance = this;
         Configuration = configuration;
+        playerActionMap = InputSystem.actions.FindActionMap("Player");
+        DisableInput();
     }
 
     public void Start()
@@ -67,10 +72,10 @@ public class Game : MonoBehaviour
         {
             currentStateManager = FindFirstObjectByType<GameStateManager>();
             if (currentStateManager)
-                return currentStateManager.State;
+                return currentStateManager.RepresentsState;
             return null;
         }
-        return currentStateManager.State;
+        return currentStateManager.RepresentsState;
     }
 
     private void Update()
@@ -87,11 +92,21 @@ public class Game : MonoBehaviour
         SceneManager.LoadScene(scene);
         currentStateManager = FindFirstObjectByType<GameStateManager>();
         Debug.Assert(currentStateManager, "State Scene has no state manager");
-        Debug.Assert(currentStateManager.State != CurrentState, "Current State Manager state not matching to desired state");
+        Debug.Assert(currentStateManager.RepresentsState != CurrentState, "Current State Manager state not matching to desired state");
+    }
+
+    public void DisableInput()
+    {
+        playerActionMap.Disable();
+    }
+
+    public void EnableInput()
+    {
+        playerActionMap.Enable();
     }
 }
 
 public abstract class GameStateManager : MonoBehaviour
 {
-    public abstract Game.GameState State { get; }
+    public abstract Game.GameState RepresentsState { get; }
 }

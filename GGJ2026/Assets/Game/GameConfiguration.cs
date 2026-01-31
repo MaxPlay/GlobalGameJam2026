@@ -4,15 +4,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/GameConfiguration")]
 public class GameConfiguration : ScriptableObject
 {
-    [SerializeField, Group("Scenes")]
+    [SerializeField, BoxGroup("Scenes")]
     private string splash;
-    [SerializeField, Group("Scenes")]
+    [SerializeField, BoxGroup("Scenes")]
     private string menu;
-    [SerializeField, Group("Scenes")]
+    [SerializeField, BoxGroup("Scenes")]
     private string ingame;
-    [SerializeField, Group("Scenes")]
+    [SerializeField, BoxGroup("Scenes")]
     private string options;
-    [SerializeField, Group("Scenes")]
+    [SerializeField, BoxGroup("Scenes")]
     private string credits;
 
     public string GetSceneByState(Game.GameState state)

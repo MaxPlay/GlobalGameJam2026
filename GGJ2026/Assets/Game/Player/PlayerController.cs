@@ -2,44 +2,47 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
 {
     private InputAction moveAction;
-    private InputAction jumpAction;
+    private InputAction sprintAction;
+    private InputAction interactAction;
+
     private CharacterController characterController;
-    [SerializeField]
-    private Transform sprite;
+    private Player player;
+    private IngameStateManager gameState;
+
     [SerializeField]
     private float speed = 1;
+    [SerializeField]
+    private float sprintSpeed;
 
     private void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-        jumpAction = InputSystem.actions.FindAction("Jump");
+        sprintAction = InputSystem.actions.FindAction("Sprint");
+        interactAction = InputSystem.actions.FindAction("Interact");
         characterController = GetComponent<CharacterController>();
+        player = GetComponent<Player>();
+        gameState = Game.Instance.GetStateManager<IngameStateManager>();
     }
 
     private void Update()
     {
+        if (gameState.State == IngameStateManager.IngameState.Paused)
+            return;
+
+        bool sprinting = sprintAction.IsPressed();
         Vector3 position = transform.position;
-        Vector2 moveValue = moveAction.ReadValue<Vector2>() * speed;
+        float totalSpeed = sprinting ? sprintSpeed : speed;
+        Vector2 moveValue = moveAction.ReadValue<Vector2>() * totalSpeed;
 
         characterController.SimpleMove(new Vector3(moveValue.x, 0, moveValue.y));
+        player.MoveDistance(Vector3.Distance(transform.position, position), sprinting);
 
-        if (jumpAction.IsPressed())
-        {
-            sprite.DOLocalJump(Vector3.zero, 2, 1, 1);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        
+        if (interactAction.WasPressedThisFrame())
+            player.Interact();
     }
 }
