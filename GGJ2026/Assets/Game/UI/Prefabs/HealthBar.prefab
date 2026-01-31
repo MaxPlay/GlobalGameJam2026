@@ -282,9 +282,9 @@ MonoBehaviour:
   healthMasks:
   - minimumHealth: 0
     sprite: {fileID: 1451641632, guid: 4646edea0b198944488e9364b9770828, type: 3}
-  - minimumHealth: 10
+  - minimumHealth: 25
     sprite: {fileID: -1497436611, guid: 4646edea0b198944488e9364b9770828, type: 3}
-  - minimumHealth: 20
+  - minimumHealth: 50
     sprite: {fileID: -1583150479, guid: 4646edea0b198944488e9364b9770828, type: 3}
-  - minimumHealth: 30
+  - minimumHealth: 75
     sprite: {fileID: 2090980246, guid: 4646edea0b198944488e9364b9770828, type: 3}
