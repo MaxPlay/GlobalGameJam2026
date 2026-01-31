@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 60d7f157c82a56647a7e38486b1215a9
+guid: a0a2c9cc13e34754798b144ddb3ad99f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: tex_Refill_Station
-    second: {fileID: 2800000, guid: 8b7549059ca46c747bfa08503fb93699, type: 3}
+    second: {fileID: 2800000, guid: 7f414aa2bc5e4d646881e8e069e5ad01, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
