@@ -40,11 +40,11 @@ public class Person : MonoBehaviour
     {
         if (hitPoints >= healthyThreshold)
         {
-            animations.PlayAnimation("Healthy");
+            animations.PlayAnimation("Healthy", 0, null, new Animatable.AnimationEvent(() => Debug.Log("cough"), 7));
         }
         else if (hitPoints > 0)
         {
-            animations.PlayAnimation("Sick");
+            animations.PlayAnimation("Sick", 0, null, new Animatable.AnimationEvent(() => Debug.Log("cough"), 7));
         }
         else
         {
