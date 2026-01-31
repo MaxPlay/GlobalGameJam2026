@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         Vector2 moveValue = moveAction.ReadValue<Vector2>() * totalSpeed;
 
         characterController.SimpleMove(new Vector3(moveValue.x, 0, moveValue.y));
-        player.MoveDistance(Vector3.Distance(transform.position, position), sprinting);
+        player.MoveDistance(Vector3.Distance(transform.position, position), sprinting, moveValue);
 
         if (interactAction.WasPressedThisFrame())
             player.Interact();
