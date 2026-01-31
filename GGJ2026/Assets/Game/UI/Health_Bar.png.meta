@@ -254,6 +254,116 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Parchment
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 31, y: 31, z: 31, w: 31}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc8f9ca9fee08914d88cf3ead474959c
+      internalID: -609087100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_Normal
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 98
+        width: 46
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 0, z: 20, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28bd287da43fa3445afdf9762c689bc4
+      internalID: 1650212595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_Highlight
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 66
+        width: 46
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 0, z: 20, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a80bed395186ed047afca8694bb354a3
+      internalID: 977325939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_Pressed
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 34
+        width: 46
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 0, z: 20, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1cc41fd4abe024fa5a6a9dcace39c0
+      internalID: 1550397804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_Disabled
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 2
+        width: 46
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 20, y: 0, z: 20, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7157f00c734bfca4f8da2a469ecfdd4f
+      internalID: -460976456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -269,11 +379,17 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Bar: -1737021964
+      Button_Clicked: 1077037103
+      Button_Disabled: -460976456
+      Button_Highlight: 977325939
+      Button_Normal: 1650212595
+      Button_Pressed: 1550397804
       Health: -974088755
       Mask_01: 2090980246
       Mask_02: -1583150479
       Mask_03: -1497436611
       Mask_04: 1451641632
+      Parchment: -609087100
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
