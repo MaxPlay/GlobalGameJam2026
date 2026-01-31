@@ -11,6 +11,9 @@ public class IngameHud : MonoBehaviour
     [SerializeField]
     private NextDayOverlay nextDay;
 
+    [SerializeField]
+    private int barSegmentSize = 15;
+
     public NextDayOverlay NextDay => nextDay;
 
     public void Setup(IngameStateManager ingameStateManager)
@@ -18,14 +21,15 @@ public class IngameHud : MonoBehaviour
         player = ingameStateManager.Player;
         list.Populate(ingameStateManager.People);
         list.gameObject.SetActive(false);
-        playerUi.SetMaxPlayerAir(player.TotalMaskPoints);
+        playerUi.SetMaxPlayerAir(player.TotalMaskPoints / barSegmentSize);
+        nextDay.Setup();
     }
 
     private void Update()
     {
         if (player && playerUi)
         {
-            playerUi.SetPlayerAir(player.MaskPoints);
+            playerUi.SetPlayerAir(player.MaskPoints / barSegmentSize);
             playerUi.SetPlayerHealth(player.HitPoints);
         }
     }

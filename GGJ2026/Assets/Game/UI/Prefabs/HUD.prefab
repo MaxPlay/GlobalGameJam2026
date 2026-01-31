@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 5906284509376266043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8491797291072408068}
@@ -38,7 +38,7 @@ RectTransform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
@@ -56,7 +56,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IngameHud
   playerUi: {fileID: 8808259495656989207}
   list: {fileID: 1620179843594515285}
-  nextDay: {fileID: 0}
+  nextDay: {fileID: 2514681556123694586}
+  barSegmentSize: 10
 --- !u!223 &6158435024434331636
 Canvas:
   m_ObjectHideFlags: 0
@@ -217,6 +218,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d178186c9b541d428d3bb2aa5affcaa, type: 3}
+--- !u!114 &2514681556123694586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4242503383863552076, guid: 1d178186c9b541d428d3bb2aa5affcaa, type: 3}
+  m_PrefabInstance: {fileID: 1730956572247383478}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b783d522d13cb64e90b7cf144dd8204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextDayOverlay
 --- !u!224 &9087583979301106473 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7356632946023542431, guid: 1d178186c9b541d428d3bb2aa5affcaa, type: 3}

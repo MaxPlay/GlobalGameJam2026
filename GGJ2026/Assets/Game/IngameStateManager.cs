@@ -37,6 +37,7 @@ public class IngameStateManager : GameStateManager
         hudInstance = Game.Instance.AddUI(hudPrefab);
         hudInstance.Setup(this);
         Game.Instance.EnableInput();
+        StartCoroutine(NextDayRoutine(true));
     }
 
     public void OnDestroy()

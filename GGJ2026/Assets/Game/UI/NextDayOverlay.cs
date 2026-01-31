@@ -41,16 +41,21 @@ public class NextDayOverlay : MonoBehaviour
         }
         description.gameObject.SetActive(!firstDay);
 
-        yield return root.DOFade(1, 2).Play();
+        yield return root.DOFade(1, 2).Play().WaitForCompletion();
         if (firstDay)
         {
             yield return new WaitForSeconds(1);
-            yield return firstDayText2.DOFade(1, 1).Play();
+            yield return firstDayText2.DOFade(1, 1).Play().WaitForCompletion();
         }
     }
 
     public IEnumerator Hide()
     {
-        yield return root.DOFade(0, 2).Play();
+        yield return root.DOFade(0, 2).Play().WaitForCompletion();
+    }
+
+    public void Setup()
+    {
+        root.alpha = 0;
     }
 }
