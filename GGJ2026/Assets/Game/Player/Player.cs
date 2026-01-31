@@ -29,10 +29,11 @@ public class Player : MonoBehaviour
     private int healAmount;
 
     private bool isLookingUp;
+    private PlayerController controller;
 
     public enum PlayerAnimationStates
     {
-        Idle, IdleUp, Walk, WalkUp, Injection
+        Idle, IdleUp, Walk, WalkUp, Injection, Record, 
     }
 
     private readonly List<IInteractable> interactablesInRange = new();
@@ -45,8 +46,10 @@ public class Player : MonoBehaviour
             (PlayerAnimationStates.Walk, "Walk"),
             (PlayerAnimationStates.IdleUp, "Idle_Back"),
             (PlayerAnimationStates.WalkUp, "Walk_Back"),
-            (PlayerAnimationStates.Injection, "Cure_Injection")
+            (PlayerAnimationStates.Injection, "Cure_Injection"),
+            (PlayerAnimationStates.Record, "Note")
         });
+        controller = GetComponent<PlayerController>();
     }
 
     private void Start()
@@ -112,19 +115,33 @@ public class Player : MonoBehaviour
     {
         person.Record();
         ReduceMask(recordMaskReduction);
+
+        spriteRenderer.flipX = person.transform.position.x < transform.position.x;
+        isLookingUp = false;
+        controller.enabled = false;
+        animations.TryPlayState(PlayerAnimationStates.Record, 0,
+            () =>
+            {
+                animations.locked = false;
+                controller.enabled = true;
+                animations.TryPlayState(PlayerAnimationStates.Idle);
+            }, true);
         // TODO: Visualization
     }
 
     public void HealPerson(Person person)
     {
         ReduceMask(healMaskReduction);
-        person.Heal(healAmount);
-            spriteRenderer.flipX = person.transform.position.x < transform.position.x;
+        person.Heal(healAmount); 
+
+        spriteRenderer.flipX = person.transform.position.x < transform.position.x;
         isLookingUp = false;
+        controller.enabled = false;
         animations.TryPlayState(PlayerAnimationStates.Injection, 0,
             () =>
             {
                 animations.locked = false;
+                controller.enabled = true;
                 animations.TryPlayState(PlayerAnimationStates.Idle);
             }, true);
 

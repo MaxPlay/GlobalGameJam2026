@@ -45,11 +45,11 @@ public class Person : MonoBehaviour, IInteractable
     {
         if (hitPoints >= healthyThreshold)
         {
-            animations.PlayAnimation("Healthy", 0, null, new Animatable.AnimationEvent(() => Debug.Log("cough"), 7));
+            animations.PlayAnimation("Healthy");
         }
         else if (hitPoints > 0)
         {
-            animations.PlayAnimation("Sick", 0, null, new Animatable.AnimationEvent(() => Debug.Log("cough"), 7));
+            animations.PlayAnimation("Sick");
         }
         else
         {
