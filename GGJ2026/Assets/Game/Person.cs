@@ -15,6 +15,10 @@ public class Person : MonoBehaviour
     private string displayName;
     [SerializeField, Range(0, 100)]
     private int hitPoints = 100;
+    [SerializeField, Range(0, 100)]
+    private int healthyThreshold = 50;
+
+    [SerializeField] private Animatable animations;
 
     public string DisplayName => displayName;
     public int HitPoints => hitPoints;
@@ -32,6 +36,10 @@ public class Person : MonoBehaviour
         if (hitPoints > 0)
         {
             hitPoints += amount;
+            animations.PlayAnimation("Heal", 5, () =>
+            {
+                animations.PlayAnimation("Sick");
+            });
             // TODO: Update Visuals
         }
     }
