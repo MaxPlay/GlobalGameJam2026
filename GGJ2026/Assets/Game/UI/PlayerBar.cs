@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Alchemy.Inspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,6 @@ public class PlayerUi : MonoBehaviour
     [SerializeField] private Image maskRenderer;
     [SerializeField] private RectTransform airRenderer;
     [SerializeField] private RectTransform backgroundRenderer;
-
     [SerializeField] private List<PlayerMaskThreshold> healthMasks;
     
     private int airBarSpriteWidth;
@@ -28,6 +28,7 @@ public class PlayerUi : MonoBehaviour
     {
         MaxPlayerAirSet(10);
         PlayerAirSet(6);
+        PlayerHealthSet(15);
     }
 
     public void PlayerHealthSet(float health)
@@ -42,6 +43,11 @@ public class PlayerUi : MonoBehaviour
             }
             index = i;
         }
+
+        if (healthMasks.TryGetEntry(index, out PlayerMaskThreshold output))
+        {
+            maskRenderer.sprite = output.sprite;
+        }
     }
 
     public void PlayerAirSet(float air)
@@ -49,7 +55,7 @@ public class PlayerUi : MonoBehaviour
         if (!airRenderer)
             return;
 
-        currentAir = air;
+        currentAir = Mathf.CeilToInt(air);
         UpdateAir();
     }
 
@@ -58,8 +64,8 @@ public class PlayerUi : MonoBehaviour
         if (!backgroundRenderer)
             return;
 
-        currentMaxAir = maxAir;
-        backgroundRenderer.sizeDelta = new Vector2(minimumBarWidth + maxAir * airBarSpriteWidth, backgroundRenderer.sizeDelta.y);
+        currentMaxAir = Mathf.CeilToInt(maxAir);
+        backgroundRenderer.sizeDelta = new Vector2(minimumBarWidth + currentMaxAir * airBarSpriteWidth, backgroundRenderer.sizeDelta.y);
         UpdateAir();
     }
 
