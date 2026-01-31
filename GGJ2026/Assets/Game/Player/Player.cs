@@ -9,9 +9,19 @@ public class Player : MonoBehaviour
     private IngameStateManager gameState;
 
     [SerializeField, BoxGroup("Points")]
-    private float hitPoints;
+    private float totalHitPoints;
+
+    [SerializeField, BoxGroup("Points")]
+    private float totalMaskPoints;
     [SerializeField, BoxGroup("Points")]
     private float maskPoints;
+    [SerializeField, BoxGroup("Points")]
+    private float hitPoints;
+
+    public float TotalMaskPoints => totalMaskPoints;
+    public float TotalHitPoints => totalHitPoints;
+    public float HitPoints => hitPoints;
+    public float MaskPoints => maskPoints;
 
     [SerializeField, BoxGroup("Reductions")]
     private float distanceMaskReductionMultiplier = 1;
@@ -30,6 +40,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         gameState = Game.Instance.GetStateManager<IngameStateManager>();
+        maskPoints = TotalMaskPoints;
+        hitPoints = totalHitPoints;
     }
 
     public void MoveDistance(float distance, bool sprinting)
@@ -83,7 +95,7 @@ public class Player : MonoBehaviour
 
     public void RefillMask(int amount)
     {
-        maskPoints += amount;
+        maskPoints = Mathf.Min(maskPoints + amount, TotalMaskPoints);
         // TODO: Visualization
     }
 

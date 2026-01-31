@@ -24,14 +24,7 @@ public class PlayerUi : MonoBehaviour
         healthMasks.Sort((a,b) => a.minimumHealth.CompareTo(b.minimumHealth));
     }
 
-    private void Start()
-    {
-        MaxPlayerAirSet(10);
-        PlayerAirSet(6);
-        PlayerHealthSet(15);
-    }
-
-    public void PlayerHealthSet(float health)
+    public void SetPlayerHealth(float health)
     {
         int index = 0;
         for (int i = 0; i < healthMasks.Count; i++)
@@ -50,7 +43,7 @@ public class PlayerUi : MonoBehaviour
         }
     }
 
-    public void PlayerAirSet(float air)
+    public void SetPlayerAir(float air)
     {
         if (!airRenderer)
             return;
@@ -59,7 +52,7 @@ public class PlayerUi : MonoBehaviour
         UpdateAir();
     }
 
-    public void MaxPlayerAirSet(float maxAir)
+    public void SetMaxPlayerAir(float maxAir)
     {
         if (!backgroundRenderer)
             return;
