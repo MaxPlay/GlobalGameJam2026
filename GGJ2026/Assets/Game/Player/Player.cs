@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
 {
     private IngameStateManager gameState;
 
+    [SerializeField, BoxGroup("Rendering")] private SpriteRenderer spriteRenderer;
+    [SerializeField, BoxGroup("Rendering")] private AnimationStateMachine<PlayerAnimationStates> animations;
+
     [SerializeField, BoxGroup("Points")]
     private float totalHitPoints;
 
@@ -35,7 +38,29 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int healAmount;
 
+    private bool isLookingUp;
+    private PlayerController controller;
+
+    public enum PlayerAnimationStates
+    {
+        Idle, IdleUp, Walk, WalkUp, Injection, Record, 
+    }
+
     private readonly List<IInteractable> interactablesInRange = new();
+
+    private void Awake()
+    {
+        animations.Setup(PlayerAnimationStates.Idle, new(PlayerAnimationStates, string)[]
+        {
+            (PlayerAnimationStates.Idle, "Idle"),
+            (PlayerAnimationStates.Walk, "Walk"),
+            (PlayerAnimationStates.IdleUp, "Idle_Back"),
+            (PlayerAnimationStates.WalkUp, "Walk_Back"),
+            (PlayerAnimationStates.Injection, "Cure_Injection"),
+            (PlayerAnimationStates.Record, "Note")
+        });
+        controller = GetComponent<PlayerController>();
+    }
 
     private void Start()
     {
@@ -44,8 +69,27 @@ public class Player : MonoBehaviour
         hitPoints = totalHitPoints;
     }
 
-    public void MoveDistance(float distance, bool sprinting)
+    public void MoveDistance(float distance, bool sprinting, Vector2 movement)
     {
+        if (movement.x < 0 && spriteRenderer)
+            spriteRenderer.flipX = true;
+        else if (movement.x > 0 && spriteRenderer)
+            spriteRenderer.flipX = false;
+
+        if (movement.y > 0)
+            isLookingUp = true;
+        else if (movement.y < 0)
+            isLookingUp = false;
+
+        if (distance > 0)
+        {
+            animations.TryPlayState(isLookingUp ? PlayerAnimationStates.WalkUp : PlayerAnimationStates.Walk);
+        }
+        else
+        {
+            animations.TryPlayState(isLookingUp ? PlayerAnimationStates.IdleUp : PlayerAnimationStates.Idle);
+        }
+        
         float multiplier = sprinting ? sprintingMaskReductionMultiplier : distanceMaskReductionMultiplier;
         float reduction = distance * multiplier;
         ReduceMask(reduction);
@@ -62,7 +106,7 @@ public class Player : MonoBehaviour
             }
             hitPoints -= reduction;
 
-            if (hitPoints < 0)
+            if (hitPoints <= 0)
                 gameState.GameLost();
         }
         else
@@ -83,13 +127,36 @@ public class Player : MonoBehaviour
     {
         person.Record();
         ReduceMask(recordMaskReduction);
+
+        spriteRenderer.flipX = person.transform.position.x < transform.position.x;
+        isLookingUp = false;
+        controller.enabled = false;
+        animations.TryPlayState(PlayerAnimationStates.Record, 0,
+            () =>
+            {
+                animations.locked = false;
+                controller.enabled = true;
+                animations.TryPlayState(PlayerAnimationStates.Idle);
+            }, true);
         // TODO: Visualization
     }
 
     public void HealPerson(Person person)
     {
         ReduceMask(healMaskReduction);
-        person.Heal(healAmount);
+        person.Heal(healAmount); 
+
+        spriteRenderer.flipX = person.transform.position.x < transform.position.x;
+        isLookingUp = false;
+        controller.enabled = false;
+        animations.TryPlayState(PlayerAnimationStates.Injection, 0,
+            () =>
+            {
+                animations.locked = false;
+                controller.enabled = true;
+                animations.TryPlayState(PlayerAnimationStates.Idle);
+            }, true);
+
         // TODO: Visualization
     }
 
@@ -105,7 +172,6 @@ public class Player : MonoBehaviour
         {
             interactablesInRange.Add(interactable);
             interactable.ShowInfo();
-            return;
         }
     }
 
@@ -115,7 +181,6 @@ public class Player : MonoBehaviour
         {
             interactablesInRange.Remove(interactable);
             interactable.HideInfo();
-            return;
         }
     }
 

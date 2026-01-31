@@ -52,7 +52,7 @@ public class Game : MonoBehaviour
         DisableInput();
     }
 
-    public void Start()
+    public void Awake()
     {
         GameState? state = DetectState();
         if (!state.HasValue)

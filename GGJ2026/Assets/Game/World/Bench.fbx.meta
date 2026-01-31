@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9ae6548747ce02a4caf6fbc4327ee4b4
+guid: d88ac204003ea464999ca7decd2ceea7
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: m_House_small
-    second: {fileID: 2100000, guid: 0187a120fc2f71e458e8c600a8bf635c, type: 2}
+      name: m_Bench
+    second: {fileID: 2100000, guid: d4fa05226f8546e4582df1d94e1e1e6f, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: tex_House_small
-    second: {fileID: 2800000, guid: 4c7b623e77ef1514aa9ac9792af0052b, type: 3}
+      name: tex_Bench
+    second: {fileID: 2800000, guid: bc446e38533e0f8478038943e30123ca, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

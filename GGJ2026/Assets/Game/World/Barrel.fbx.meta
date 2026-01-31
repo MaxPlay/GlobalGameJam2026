@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 031dd3bdaf1c01b4aabc937fdc708bcf
+guid: 427cafef95c882944a16cd43fbbe1979
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Barrel
+    second: {fileID: 2100000, guid: ee8db09d2c72dbe4fb80f63f53236df3, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: tex_Barrel
+    second: {fileID: 2800000, guid: 44b0be71e1c5bbb4eac699fb25e82ba2, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

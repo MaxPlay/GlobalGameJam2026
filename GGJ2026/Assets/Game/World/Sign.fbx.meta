@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9ae6548747ce02a4caf6fbc4327ee4b4
+guid: f0eac21743cebdc4fbaece9c996df069
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: m_House_small
-    second: {fileID: 2100000, guid: 0187a120fc2f71e458e8c600a8bf635c, type: 2}
+      name: m_Sign
+    second: {fileID: 2100000, guid: db55cb6d1b465164cb1cc849ad98d7cc, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: tex_House_small
-    second: {fileID: 2800000, guid: 4c7b623e77ef1514aa9ac9792af0052b, type: 3}
+      name: tex_Sign
+    second: {fileID: 2800000, guid: bb30a7acb56ce404c892aa8f51766e71, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
