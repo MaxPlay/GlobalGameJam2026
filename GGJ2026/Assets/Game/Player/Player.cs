@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 {
     private IngameStateManager gameState;
 
+    [SerializeField] private Animatable animations;
+
     [SerializeField, BoxGroup("Points")]
     private float hitPoints;
     [SerializeField, BoxGroup("Points")]
@@ -50,7 +52,7 @@ public class Player : MonoBehaviour
             }
             hitPoints -= reduction;
 
-            if (hitPoints < 0)
+            if (hitPoints <= 0)
                 gameState.GameLost();
         }
         else
@@ -93,7 +95,6 @@ public class Player : MonoBehaviour
         {
             interactablesInRange.Add(interactable);
             interactable.ShowInfo();
-            return;
         }
     }
 
@@ -103,7 +104,6 @@ public class Player : MonoBehaviour
         {
             interactablesInRange.Remove(interactable);
             interactable.HideInfo();
-            return;
         }
     }
 

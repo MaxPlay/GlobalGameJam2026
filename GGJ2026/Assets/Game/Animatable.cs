@@ -26,22 +26,21 @@ public class Animatable : MonoBehaviour
             }
 
             var currentAnimatorState = animator.GetCurrentAnimatorStateInfo(0);
-            if (currentAnimatorState.normalizedTime >= 1 ||
-                previousNormalizedProgress > currentAnimatorState.normalizedTime)
+            if (previousNormalizedProgress > currentAnimatorState.normalizedTime % 1f)
             {
                 onEndEvent?.Invoke();
-                foreach (AnimationEvent actionEvent in currentEvents)
+                if (currentEvents != null)
                 {
-                    actionEvent.Reset();
+                    foreach (AnimationEvent actionEvent in currentEvents)
+                    {
+                        actionEvent.Reset();
+                    }
                 }
             }
-            else
-            {
-                previousNormalizedProgress = currentAnimatorState.normalizedTime;
-            }
+            previousNormalizedProgress = currentAnimatorState.normalizedTime % 1f;
         }
     }
-    
+
     public void PlayAnimation(string state, int delay = 0, Action onEnd = null, params AnimationEvent[] events)
     {
         previousNormalizedProgress = 0;
@@ -57,7 +56,7 @@ public class Animatable : MonoBehaviour
 
     private IEnumerator DelayAnimation(string state, int delay, Action onEnd = null, params AnimationEvent[] events)
     {
-        yield return new WaitForSeconds(delay / 30f);
+        yield return new WaitForSeconds(delay / 10f);
         StartCoroutine(DoPlayAnimation(state, onEnd, events));
     }
 
@@ -66,7 +65,12 @@ public class Animatable : MonoBehaviour
         animator.Play(state);
         currentEvents = null;
         onEndEvent = null;
+        previousNormalizedProgress = 0;
         yield return null; // animators don't update their "current state" immediately. Wait 1 Frame to ensure we get the correct clip length;
+        foreach(AnimationEvent actionEvent in events)
+        {
+            actionEvent.callTime -= 1;
+        }
         onEndEvent = onEnd;
         currentEvents = events;
     }
@@ -103,7 +107,7 @@ public class Animatable : MonoBehaviour
             if (triggered)
                 return;
             timer += deltaTime;
-            if (timer * 30 > callTime)
+            if (timer * 10 > callTime)
             {
                 action?.Invoke();
                 triggered = true;
