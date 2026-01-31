@@ -1,7 +1,7 @@
 ﻿using Alchemy.Inspector;
 using UnityEngine;
 
-public class Person : MonoBehaviour
+public class Person : MonoBehaviour, IInteractable
 {
     public enum PersonState
     {
@@ -26,6 +26,10 @@ public class Person : MonoBehaviour
     [ShowInInspector]
     public PersonState State { get; private set; } = PersonState.Unchecked;
 
+    public Vector3 Position => transform.position;
+
+    public bool IsRecorded => State == PersonState.Alive || State == PersonState.Dead;
+
     private void Start()
     {
         EnterIdleAnimation();
@@ -34,6 +38,7 @@ public class Person : MonoBehaviour
     public void Record()
     {
         State = hitPoints > 0 ? PersonState.Alive : PersonState.Dead;
+        Game.Instance.GetStateManager<IngameStateManager>().ValidatePeople();
     }
 
     private void EnterIdleAnimation()
@@ -70,5 +75,32 @@ public class Person : MonoBehaviour
         hitPoints -= 25;
         EnterIdleAnimation();
         // TODO: Update Visuals
+    }
+
+    public void Interact(Player player)
+    {
+        switch (State)
+        {
+            case PersonState.Unchecked:
+            case PersonState.Unknown:
+                player.RecordPerson(this);
+                break;
+            case PersonState.Alive:
+                player.HealPerson(this);
+                break;
+            case PersonState.Dead:
+                // TODO: We could add a funny animation here
+                break;
+        }
+    }
+
+    public void HideInfo()
+    {
+        // TODO: Hide Interaction Info
+    }
+
+    public void ShowInfo()
+    {
+        // TODO: Show Interaction Info
     }
 }
