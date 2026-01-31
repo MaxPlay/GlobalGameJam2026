@@ -26,20 +26,38 @@ public class Person : MonoBehaviour
     [ShowInInspector]
     public PersonState State { get; private set; } = PersonState.Unchecked;
 
+    private void Start()
+    {
+        EnterIdleAnimation();
+    }
+
     public void Record()
     {
         State = hitPoints > 0 ? PersonState.Alive : PersonState.Dead;
+    }
+
+    private void EnterIdleAnimation()
+    {
+        if (hitPoints >= healthyThreshold)
+        {
+            animations.PlayAnimation("Healthy");
+        }
+        else if (hitPoints > 0)
+        {
+            animations.PlayAnimation("Sick");
+        }
+        else
+        {
+            animations.PlayAnimation("Dead");
+        }
     }
 
     public void Heal(int amount)
     {
         if (hitPoints > 0)
         {
+            animations.PlayAnimation(hitPoints >= healthyThreshold ? "Heal_Healthy" : "Heal", 5, EnterIdleAnimation);
             hitPoints += amount;
-            animations.PlayAnimation("Heal", 5, () =>
-            {
-                animations.PlayAnimation("Sick");
-            });
             // TODO: Update Visuals
         }
     }
@@ -50,6 +68,7 @@ public class Person : MonoBehaviour
             State = PersonState.Unknown;
 
         hitPoints -= 25;
+        EnterIdleAnimation();
         // TODO: Update Visuals
     }
 }
