@@ -7,6 +7,7 @@ public class Game : MonoBehaviour
 {
     private GameStateManager currentStateManager;
     private InputActionMap playerActionMap;
+    private Canvas rootCanvas;
 
     public T GetStateManager<T>() where T : GameStateManager => currentStateManager as T;
 
@@ -47,6 +48,7 @@ public class Game : MonoBehaviour
         Instance = this;
         Configuration = configuration;
         playerActionMap = InputSystem.actions.FindActionMap("Player");
+        rootCanvas = Configuration.CreateRootCanvas();
         DisableInput();
     }
 
@@ -103,6 +105,11 @@ public class Game : MonoBehaviour
     public void EnableInput()
     {
         playerActionMap.Enable();
+    }
+
+    public T AddUI<T>(T prefab) where T : UnityEngine.Object
+    {
+        return Instantiate(prefab, rootCanvas.transform);
     }
 }
 

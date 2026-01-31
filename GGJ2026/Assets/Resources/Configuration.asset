@@ -17,3 +17,5 @@ MonoBehaviour:
   ingame: 
   options: 
   credits: 
+  rootCanvas: {fileID: 6158435024434331636, guid: f8be48962dba59b4188986905e065bbf, type: 3}
+  eventSystem: {fileID: 5413295772986788226, guid: a40bbd032a46f02409b1289e96b63e1e, type: 3}

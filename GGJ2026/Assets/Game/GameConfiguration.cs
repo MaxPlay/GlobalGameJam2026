@@ -1,5 +1,6 @@
 ﻿using Alchemy.Inspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [CreateAssetMenu(menuName = "Game/GameConfiguration")]
 public class GameConfiguration : ScriptableObject
@@ -14,6 +15,19 @@ public class GameConfiguration : ScriptableObject
     private string options;
     [SerializeField, BoxGroup("Scenes")]
     private string credits;
+
+    [SerializeField, BoxGroup("UI")]
+    private Canvas rootCanvas;
+    [SerializeField, BoxGroup("UI")]
+    private EventSystem eventSystem;
+
+    public Canvas CreateRootCanvas()
+    {
+        Canvas canvas = Instantiate(rootCanvas);
+        DontDestroyOnLoad(canvas);
+        DontDestroyOnLoad(Instantiate(eventSystem));
+        return canvas;
+    }
 
     public string GetSceneByState(Game.GameState state)
     {

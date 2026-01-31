@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class IngameStateManager : GameStateManager
 {
@@ -16,6 +16,7 @@ public class IngameStateManager : GameStateManager
     private int currentDay = 1;
     private Player player;
 
+    public Player Player => player;
     public IngameState State { get; private set; }
 
     private readonly List<RefillStation> refillStations = new();
@@ -24,17 +25,23 @@ public class IngameStateManager : GameStateManager
 
     public override Game.GameState RepresentsState => Game.GameState.Ingame;
 
+    [SerializeField]
+    private IngameHud hudPrefab;
+    private IngameHud hudInstance;
 
     public void Start()
     {
         people.AddRange(FindObjectsByType<Person>(FindObjectsSortMode.None));
         refillStations.AddRange(FindObjectsByType<RefillStation>(FindObjectsSortMode.None));
         player = FindFirstObjectByType<Player>();
+        hudInstance = Game.Instance.AddUI(hudPrefab);
+        hudInstance.Setup(this);
         Game.Instance.EnableInput();
     }
 
     public void OnDestroy()
     {
+        Destroy(hudInstance);
         Game.Instance.DisableInput();
     }
 
@@ -72,8 +79,9 @@ public class IngameStateManager : GameStateManager
             ++currentDay;
         }
 
-        // TODO: Animate Overlay
-        yield return null;
+        int deadCount = people.Count(p => p.State == Person.PersonState.Dead);
+        hudInstance.NextDay.SetData(currentDay, deadCount, people.Count);
+        yield return hudInstance.NextDay.Show(firstDay);
 
         foreach (RefillStation item in refillStations)
         {
@@ -85,8 +93,8 @@ public class IngameStateManager : GameStateManager
             item.NextDay();
         }
 
-        // TODO: Animate Overlay
-        yield return null;
+        yield return new WaitForSeconds(3);
+        yield return hudInstance.NextDay.Hide();
 
         Game.Instance.EnableInput();
     }
