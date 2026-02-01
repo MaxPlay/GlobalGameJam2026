@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
 
     [SerializeField, BoxGroup("Points")]
     private float totalHitPoints;
-
     [SerializeField, BoxGroup("Points")]
     private float totalMaskPoints;
     [SerializeField, BoxGroup("Points")]
@@ -37,6 +36,12 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private int healAmount;
+    [SerializeField]
+    private int pouchFillAmount;
+    [SerializeField]
+    private int pouchCount;
+
+    public int PouchCount => pouchCount;
 
     private bool isLookingUp;
     private PlayerController controller;
@@ -208,5 +213,14 @@ public class Player : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void UsePouch()
+    {
+        if (pouchCount > 0 && maskPoints < TotalMaskPoints)
+        {
+            pouchCount--;
+            RefillMask(pouchFillAmount);
+        }
     }
 }

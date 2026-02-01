@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private InputAction sprintAction;
     private InputAction interactAction;
+    private InputAction usePouchAction;
 
     private CharacterController characterController;
     private Player player;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
         interactAction = InputSystem.actions.FindAction("Interact");
+        usePouchAction = InputSystem.actions.FindAction("UsePouch");
 
         characterController = GetComponent<CharacterController>();
         player = GetComponent<Player>();
@@ -45,5 +47,8 @@ public class PlayerController : MonoBehaviour
 
         if (interactAction.WasPressedThisFrame())
             player.Interact();
+
+        if (usePouchAction.WasPressedThisFrame())
+            player.UsePouch();
     }
 }
