@@ -746,7 +746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2571642705258820005, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}
       propertyPath: hitPoints
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6802209907565132845, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}
       propertyPath: m_Name
@@ -1516,10 +1516,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8238937242725629651, guid: e4b6b86a63ab1fa42baf510289351d61, type: 3}
-      propertyPath: injectionClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 160c1c2e06a9949418804056831abf71, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1533,6 +1529,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1212424965094503623, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}
+      propertyPath: MaxDistance
+      value: 5.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212424965094503623, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}
+      propertyPath: MinDistance
+      value: 0.84000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212424965094503623, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2169367796202667002, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.34
@@ -1571,10 +1579,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2169367796202667002, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2571642705258820005, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}
-      propertyPath: hitPoints
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6802209907565132845, guid: 52c70d2ecb1f1b1428eaa04e2aea2a15, type: 3}

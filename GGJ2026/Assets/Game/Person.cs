@@ -1,4 +1,5 @@
-﻿using Alchemy.Inspector;
+﻿using System.Collections;
+using Alchemy.Inspector;
 using UnityEngine;
 
 public class Person : MonoBehaviour, IInteractable
@@ -18,6 +19,10 @@ public class Person : MonoBehaviour, IInteractable
     [SerializeField, Range(0, 100)]
     private int healthyThreshold = 50;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] coughClips;
+    [SerializeField] private Vector2 coughDelayRange;
+
     [SerializeField] private Animatable animations;
 
     public string DisplayName => displayName;
@@ -33,6 +38,20 @@ public class Person : MonoBehaviour, IInteractable
     private void Start()
     {
         EnterIdleAnimation();
+        StartCoroutine(CoughRoutine());
+    }
+
+    private IEnumerator CoughRoutine()
+    {
+        while (hitPoints > 0)
+        {
+            yield return new WaitForSeconds(UnityEngine.Random.Range(coughDelayRange.x, coughDelayRange.y));
+            if (hitPoints >= healthyThreshold)
+            {
+                audioSource.clip = coughClips[Random.Range(0, coughClips.Length - 1)];
+                audioSource.Play();
+            }
+        }
     }
 
     public void Record()
