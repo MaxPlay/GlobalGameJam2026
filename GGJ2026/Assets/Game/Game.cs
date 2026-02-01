@@ -86,7 +86,7 @@ public class Game : MonoBehaviour
 
     public void SwitchState(GameState state)
     {
-        if (CurrentState != state)
+        if (CurrentState == state)
             return;
 
         CurrentState = state;

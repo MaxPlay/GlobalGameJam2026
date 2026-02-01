@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Alchemy.Inspector;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,6 +33,10 @@ public class IngameStateManager : GameStateManager
     private IngameHud hudInstance;
     private InputAction peopleListAction;
 
+    [SerializeField, BoxGroup("Ending")] private Transform cinematicStart;
+    [SerializeField, BoxGroup("Ending")] private Transform cinematicEnd;
+    [SerializeField, BoxGroup("Ending")] private float cinematicDuration = 30;
+
     public void Start()
     {
         people.AddRange(FindObjectsByType<Person>(FindObjectsSortMode.None));
@@ -46,26 +52,47 @@ public class IngameStateManager : GameStateManager
 
     private void Update()
     {
-        if (peopleListAction.WasPressedThisFrame())
+        if (State != IngameState.Over && peopleListAction.WasPressedThisFrame())
             TogglePeopleList();
     }
 
     public void OnDestroy()
     {
-        Destroy(hudInstance);
+        Destroy(hudInstance.gameObject);
         Game.Instance.DisableInput();
     }
 
     public void GameLost()
     {
         State = IngameState.Over;
-        Debug.Log("Game Lost!");
+        StartCoroutine(StartGameLossSequence());
+    }
+
+    private IEnumerator StartGameLossSequence()
+    {
+        yield return new WaitForSeconds(2);
+        hudInstance.ShowLossOverlay();
     }
 
     public void GameWon()
     {
         State = IngameState.Over;
-        Debug.Log("Game Won!");
+        StartCoroutine(StartGameWinSequence());
+    }
+
+    private IEnumerator StartGameWinSequence()
+    {
+        yield return new WaitForSeconds(2);
+        Camera.main.transform.DOMove(cinematicEnd.position, cinematicDuration).From(cinematicStart.position).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        Camera.main.transform.rotation = cinematicStart.rotation;
+        hudInstance.ShowWinOverlay();
+        hudInstance.GameWin.Setup(this, currentDay, people.Count(p => p.State == Person.PersonState.Alive), people.Count(p => p.State == Person.PersonState.Dead));
+
+    }
+
+    public void EndGame()
+    {
+        Game.Instance.SwitchState(Game.GameState.Menu);
     }
 
     public void ValidatePeople()
@@ -110,9 +137,9 @@ public class IngameStateManager : GameStateManager
         Game.Instance.EnableInput();
     }
 
-    public void TogglePeopleList()
+    public void TogglePeopleList(bool force = false)
     {
-        if (State != IngameState.Over)
+        if (force || State != IngameState.Over)
             State = hudInstance.TogglePeopleList() ? IngameState.Paused : IngameState.Running;
     }
 }
