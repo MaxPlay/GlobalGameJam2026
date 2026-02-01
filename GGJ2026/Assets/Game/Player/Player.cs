@@ -1,7 +1,10 @@
 using Alchemy.Inspector;
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
@@ -34,6 +37,15 @@ public class Player : MonoBehaviour
     [SerializeField, BoxGroup("Reductions")]
     private float healMaskReduction;
 
+    [SerializeField, BoxGroup("Effects")]
+    private Volume postEffectVolume;
+    [SerializeField, BoxGroup("Effects")]
+    private Color baseVignetteColor;
+    [SerializeField, BoxGroup("Effects")]
+    private Color damageVignetteColor;
+
+    [SerializeField, BoxGroup("Effects")] private ParticleSystem damagingParticleEffects;
+
     [SerializeField]
     private int healAmount;
     [SerializeField]
@@ -45,6 +57,8 @@ public class Player : MonoBehaviour
 
     private bool isLookingUp;
     private PlayerController controller;
+    private Color currentVignetteColor;
+    private bool isDoingVignetteEffect;
 
     public enum PlayerAnimationStates
     {
@@ -110,6 +124,26 @@ public class Player : MonoBehaviour
                 maskPoints = 0;
             }
             hitPoints -= reduction;
+            damagingParticleEffects.Play();
+            if (!isDoingVignetteEffect)
+            {
+                isDoingVignetteEffect = true;
+                Sequence sequence = DOTween.Sequence(this);
+                sequence.Append(DOTween.To(() => currentVignetteColor, SetCurrentVignetteColor, damageVignetteColor,
+                    0.5f));
+                sequence.Append(DOTween.To(() => currentVignetteColor, SetCurrentVignetteColor, baseVignetteColor,
+                    2f).SetDelay(0.5f));
+                sequence.OnComplete((() => { isDoingVignetteEffect = false; }));
+                sequence.Play();
+
+
+                Sequence spriteSequence = DOTween.Sequence(this);
+                spriteSequence.Append(spriteRenderer.DOColor(damageVignetteColor, 1f));
+                spriteSequence.Append(spriteRenderer.DOColor(Color.white, 1f).SetDelay(0.5f));
+                spriteSequence.Play();
+
+                spriteRenderer.transform.DOShakePosition(1f,0.1f, 20);
+            }
 
             if (hitPoints <= 0)
                 gameState.GameLost();
@@ -117,6 +151,19 @@ public class Player : MonoBehaviour
         else
         {
             maskPoints -= reduction;
+            damagingParticleEffects.Pause();
+        }
+    }
+
+    private void SetCurrentVignetteColor(Color color)
+    {
+        currentVignetteColor = color;
+        foreach (VolumeComponent component in postEffectVolume.profile.components)
+        {
+            if (component is Vignette vignette)
+            {
+                vignette.color.value = currentVignetteColor;
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Alchemy.Inspector;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class PlayerUi : MonoBehaviour
     private float airRightSideOffset;
     private float currentMaxAir;
     private float currentAir;
+    private float currentHealth;
+
+    private bool maskIsShaking;
 
     private void Awake()
     {
@@ -26,6 +30,14 @@ public class PlayerUi : MonoBehaviour
 
     public void SetPlayerHealth(float health)
     {
+        if (!maskIsShaking && currentHealth > health)
+        {
+            maskIsShaking = true;
+            maskRenderer.transform.DOShakePosition(1f).OnComplete(() => { maskIsShaking = false;});
+        }
+
+        currentHealth = health;
+
         int index = 0;
         for (int i = 0; i < healthMasks.Count; i++)
         {
