@@ -62,7 +62,8 @@ public class Player : MonoBehaviour
 
     public enum PlayerAnimationStates
     {
-        Idle, IdleUp, Walk, WalkUp, Injection, Record, 
+        Idle, IdleUp, Walk, WalkUp, Injection, Record,
+        Death
     }
 
     private readonly List<IInteractable> interactablesInRange = new();
@@ -76,7 +77,8 @@ public class Player : MonoBehaviour
             (PlayerAnimationStates.IdleUp, "Idle_Back"),
             (PlayerAnimationStates.WalkUp, "Walk_Back"),
             (PlayerAnimationStates.Injection, "Cure_Injection"),
-            (PlayerAnimationStates.Record, "Note")
+            (PlayerAnimationStates.Record, "Note"),
+            (PlayerAnimationStates.Death, "Death")
         });
         controller = GetComponent<PlayerController>();
     }
@@ -146,7 +148,10 @@ public class Player : MonoBehaviour
             }
 
             if (hitPoints <= 0)
+            {
+                animations.TryPlayState(PlayerAnimationStates.Death, 0, null, true);
                 gameState.GameLost();
+            }
         }
         else
         {
