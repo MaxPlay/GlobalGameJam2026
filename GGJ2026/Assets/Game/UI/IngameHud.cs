@@ -10,6 +10,8 @@ public class IngameHud : MonoBehaviour
     private PeopleList list;
     [SerializeField]
     private NextDayOverlay nextDay;
+    [SerializeField]
+    private CountIcon pouchIcon;
 
     [SerializeField]
     private int barSegmentSize = 15;
@@ -37,10 +39,18 @@ public class IngameHud : MonoBehaviour
 
     private void Update()
     {
-        if (player && playerUi)
+        if (player)
         {
-            playerUi.SetPlayerAir(player.MaskPoints / barSegmentSize);
-            playerUi.SetPlayerHealth(player.HitPoints);
+            if (playerUi)
+            {
+                playerUi.SetPlayerAir(player.MaskPoints / barSegmentSize);
+                playerUi.SetPlayerHealth(player.HitPoints);
+            }
+
+            if (pouchIcon)
+            {
+                pouchIcon.SetCount(player.PouchCount);
+            }
         }
     }
 
