@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Alchemy.Inspector;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -120,6 +121,8 @@ public class IngameStateManager : GameStateManager
         int deadCount = people.Count(p => p.State == Person.PersonState.Dead);
         hudInstance.NextDay.SetData(currentDay, deadCount, people.Count);
         yield return hudInstance.NextDay.Show(firstDay);
+
+        player.RefillMask(Mathf.CeilToInt(player.TotalMaskPoints));
 
         foreach (RefillStation item in refillStations)
         {

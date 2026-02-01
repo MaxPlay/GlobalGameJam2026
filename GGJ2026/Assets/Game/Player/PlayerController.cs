@@ -34,6 +34,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!gameState)
+        {
+            gameState = Game.Instance.GetStateManager<IngameStateManager>();
+        }
         if (gameState.State != IngameStateManager.IngameState.Running)
             return;
 

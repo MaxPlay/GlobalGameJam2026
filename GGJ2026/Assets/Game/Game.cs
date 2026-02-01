@@ -91,7 +91,14 @@ public class Game : MonoBehaviour
 
         CurrentState = state;
         string scene = Configuration.GetSceneByState(CurrentState);
-        SceneManager.LoadScene(scene);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(scene);
+        asyncOperation.allowSceneActivation = true;
+        asyncOperation.completed += SceneLoaded;
+    }
+
+    private void SceneLoaded(AsyncOperation obj)
+    {
+
         currentStateManager = FindFirstObjectByType<GameStateManager>();
         Debug.Assert(currentStateManager, "State Scene has no state manager");
         Debug.Assert(currentStateManager.RepresentsState != CurrentState, "Current State Manager state not matching to desired state");
