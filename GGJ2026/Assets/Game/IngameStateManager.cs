@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Alchemy.Inspector;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +35,7 @@ public class IngameStateManager : GameStateManager
 
     [SerializeField, BoxGroup("Ending")] private Transform cinematicStart;
     [SerializeField, BoxGroup("Ending")] private Transform cinematicEnd;
+    [SerializeField, BoxGroup("Ending")] private float cinematicDuration = 30;
 
     public void Start()
     {
@@ -63,16 +65,29 @@ public class IngameStateManager : GameStateManager
     public void GameLost()
     {
         State = IngameState.Over;
+        StartCoroutine(StartGameLossSequence());
+    }
+
+    private IEnumerator StartGameLossSequence()
+    {
+        yield return new WaitForSeconds(2);
         hudInstance.ShowLossOverlay();
-        Debug.Log("Game Lost!");
     }
 
     public void GameWon()
     {
         State = IngameState.Over;
+        StartCoroutine(StartGameWinSequence());
+    }
+
+    private IEnumerator StartGameWinSequence()
+    {
+        yield return new WaitForSeconds(2);
+        Camera.main.transform.DOMove(cinematicEnd.position, cinematicDuration).From(cinematicStart.position).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        Camera.main.transform.rotation = cinematicStart.rotation;
         hudInstance.ShowWinOverlay();
         hudInstance.GameWin.Setup(this, currentDay, people.Count(p => p.State == Person.PersonState.Alive), people.Count(p => p.State == Person.PersonState.Dead));
-        Debug.Log("Game Won!");
+
     }
 
     public void EndGame()
