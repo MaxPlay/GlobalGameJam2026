@@ -2,6 +2,7 @@ using Alchemy.Inspector;
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -102,6 +103,15 @@ public class Player : MonoBehaviour
         gameState = Game.Instance.GetStateManager<IngameStateManager>();
         maskPoints = TotalMaskPoints;
         hitPoints = totalHitPoints;
+    }
+
+    void Update()
+    {
+        infoCanvas.gameObject.SetActive(hitPoints > 0 && interactablesInRange.Count > 0);
+        if (interactablesInRange.Count > 0)
+        {
+            infoText.text = interactablesInRange[0].InfoText;
+        }
     }
 
     public void MoveDistance(float distance, bool sprinting, Vector2 movement)
@@ -257,8 +267,6 @@ public class Player : MonoBehaviour
         if (other.TryGetComponent(out IInteractable interactable))
         {
             interactablesInRange.Add(interactable);
-            infoCanvas.gameObject.SetActive(true);
-            infoText.text = interactable.InfoText;
         }
     }
 
@@ -267,7 +275,6 @@ public class Player : MonoBehaviour
         if (other.TryGetComponent(out IInteractable interactable))
         {
             interactablesInRange.Remove(interactable);
-            infoCanvas.gameObject.SetActive(false);
         }
     }
 

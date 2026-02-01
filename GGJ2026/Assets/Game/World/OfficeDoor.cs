@@ -9,5 +9,5 @@ public class OfficeDoor : MonoBehaviour, IInteractable
         Game.Instance.GetStateManager<IngameStateManager>().NextDay();
     }
 
-    public string InfoText => "End Day";
+    public string InfoText => "End Day. Refills air but villagers might die.";
 }

@@ -19,7 +19,7 @@ public class RefillStation : MonoBehaviour, IInteractable
         }
     }
 
-    public string InfoText => "Interact to Refill Air once";
+    public string InfoText => "Refill your air once.";
 
     public void NextDay()
     {

@@ -113,5 +113,12 @@ public class Person : MonoBehaviour, IInteractable
         }
     }
 
-    public string InfoText => "Heal Me!";
+    public string InfoText => State switch
+    {
+        PersonState.Unchecked => "I haven't found this one yet.",
+        PersonState.Unknown => "I haven't checked on this one yet.",
+        PersonState.Dead => "Nothing to do here.",
+        PersonState.Alive => "Heal me please...",
+        _ => ""
+    };
 }
