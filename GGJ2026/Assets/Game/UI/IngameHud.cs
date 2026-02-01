@@ -67,7 +67,7 @@ public class IngameHud : MonoBehaviour
 
     public void ShowLossOverlay()
     {
-
+        gameLoss.ShowOverlay();
     }
 
     public bool TogglePeopleList()

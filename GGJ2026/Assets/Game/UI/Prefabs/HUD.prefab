@@ -174,7 +174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3094507240025641414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -219,6 +219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5507cd58e3ff544ac73727b60ee6c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameLossOverlay
+  canvasGroup: {fileID: 1039796114915008920}
+  titleText: {fileID: 5463153611994936341}
+  descriptionText: {fileID: 2854627823276896258}
 --- !u!1 &4356860507566353552
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7157845036168230890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1249,7 +1252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 492929909928878803, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 58.778645
       objectReference: {fileID: 0}
     - target: {fileID: 492929909928878803, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1305,27 +1308,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 503830673449383242, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 503830673449383242, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 503830673449383242, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 30.778645
       objectReference: {fileID: 0}
     - target: {fileID: 503830673449383242, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 503830673449383242, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 29.389322
       objectReference: {fileID: 0}
     - target: {fileID: 503830673449383242, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -13.5
       objectReference: {fileID: 0}
     - target: {fileID: 2439980052155707437, guid: 4945d2478cc6cb842bab829878c7624a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
