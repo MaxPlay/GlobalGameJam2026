@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
         interactAction = InputSystem.actions.FindAction("Interact");
+
         characterController = GetComponent<CharacterController>();
         player = GetComponent<Player>();
         gameState = Game.Instance.GetStateManager<IngameStateManager>();
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (gameState.State == IngameStateManager.IngameState.Paused)
+        if (gameState.State != IngameStateManager.IngameState.Running)
             return;
 
         bool sprinting = sprintAction.IsPressed();

@@ -1,8 +1,5 @@
 ﻿using DG.Tweening;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +29,7 @@ public class NextDayOverlay : MonoBehaviour
 
     public IEnumerator Show(bool firstDay)
     {
+        root.blocksRaycasts = true;
         firstDayText.gameObject.SetActive(firstDay);
         firstDayText2.gameObject.SetActive(firstDay);
         {
@@ -52,10 +50,12 @@ public class NextDayOverlay : MonoBehaviour
     public IEnumerator Hide()
     {
         yield return root.DOFade(0, 2).Play().WaitForCompletion();
+        root.blocksRaycasts = false;
     }
 
     public void Setup()
     {
         root.alpha = 0;
+        root.blocksRaycasts = false;
     }
 }

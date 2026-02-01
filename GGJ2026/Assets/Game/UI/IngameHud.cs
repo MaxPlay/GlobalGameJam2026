@@ -20,7 +20,17 @@ public class IngameHud : MonoBehaviour
     {
         player = ingameStateManager.Player;
         list.Populate(ingameStateManager.People);
-        list.gameObject.SetActive(false);
+
+        RectTransform listTransform = list.transform as RectTransform;
+        {
+            Vector2 anchorMin = listTransform.anchorMin;
+            anchorMin.y = -1;
+            listTransform.anchorMin = anchorMin;
+            Vector2 anchorMax = listTransform.anchorMax;
+            anchorMax.y = 0;
+            listTransform.anchorMax = anchorMax;
+        }
+
         playerUi.SetMaxPlayerAir(player.TotalMaskPoints / barSegmentSize);
         nextDay.Setup();
     }
@@ -34,18 +44,23 @@ public class IngameHud : MonoBehaviour
         }
     }
 
-    public void ShowPeopleList(bool show)
+    public bool TogglePeopleList()
     {
-        if (show)
+        list.IsVisible = !list.IsVisible;
+
+        if (list.IsVisible)
             list.Refresh();
 
         RectTransform listTransform = list.transform as RectTransform;
         Vector2 anchorMin = listTransform.anchorMin;
         Vector2 anchorMax = listTransform.anchorMax;
-        anchorMin.y = show ? 0 : 1;
-        anchorMax.y = show ? 1 : 2;
+        anchorMin.y = list.IsVisible ? 0 : -1;
+        anchorMax.y = list.IsVisible ? 1 : 0;
 
+        DOTween.Kill(listTransform);
         listTransform.DOAnchorMin(anchorMin, 1).SetEase(Ease.OutCubic).Play();
         listTransform.DOAnchorMax(anchorMax, 1).SetEase(Ease.OutCubic).Play();
+
+        return list.IsVisible;
     }
 }
