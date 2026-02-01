@@ -16447,6 +16447,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Benny
       objectReference: {fileID: 0}
+    - target: {fileID: 2951687251885571003, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
+      propertyPath: m_Text
+      value: 2D Art, Programming
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340117180201614352, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cb0b3139626cd6d46ae5589c214d54d8, type: 3}
     - target: {fileID: 7775501101264215667, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16720,14 +16728,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2443797676939778322}
-  - {fileID: 1844719445}
   - {fileID: 775846640}
+  - {fileID: 1844719445}
   m_Father: {fileID: 2073828677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2.469999}
-  m_SizeDelta: {x: 0, y: -4.940002}
+  m_AnchoredPosition: {x: 0, y: -0.36499786}
+  m_SizeDelta: {x: 0, y: -10.610001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &902472296
 MonoBehaviour:
@@ -16746,8 +16754,8 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 7.8
+  m_ChildAlignment: 1
+  m_Spacing: 6.55
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -17377,6 +17385,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9ae6548747ce02a4caf6fbc4327ee4b4, type: 3}
   m_PrefabInstance: {fileID: 408929622}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1327537230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327537231}
+  - component: {fileID: 1327537233}
+  - component: {fileID: 1327537232}
+  m_Layer: 5
+  m_Name: Job
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1327537231
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327537230}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2073828677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 81.3999, y: 7.8}
+  m_SizeDelta: {x: 146.3, y: 10.889999}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1327537232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327537230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 192ccdc1a806eea47879d516fa362011, type: 3}
+    m_FontSize: 10
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Font: Alkhemikal  by jeti '
+--- !u!222 &1327537233
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327537230}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1335928043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23071,6 +23158,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tobi
       objectReference: {fileID: 0}
+    - target: {fileID: 2951687251885571003, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
+      propertyPath: m_Text
+      value: 3D Art, Sound Effects
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340117180201614352, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 82997f4a31df9ff428da838b9a756910, type: 3}
     - target: {fileID: 6362100415102345919, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
       propertyPath: m_Text
       value: Tobias Metz
@@ -23438,13 +23533,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 902472295}
+  - {fileID: 1327537231}
   - {fileID: 1091690795}
   m_Father: {fileID: 672871770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 41.7, y: -131.3}
-  m_SizeDelta: {x: 145, y: 95.5}
+  m_SizeDelta: {x: 145, y: 100.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2073828678
 MonoBehaviour:
@@ -23767,6 +23863,10 @@ PrefabInstance:
     - target: {fileID: 2686500807143812378, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
       propertyPath: m_Name
       value: Max
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951687251885571003, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
+      propertyPath: m_Text
+      value: Programming, Level Design
       objectReference: {fileID: 0}
     - target: {fileID: 6362100415102345919, guid: 4c08c7c2448169b4fa2a3d2fada1bbd9, type: 3}
       propertyPath: m_Text
