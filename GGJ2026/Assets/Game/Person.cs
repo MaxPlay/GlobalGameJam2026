@@ -113,13 +113,5 @@ public class Person : MonoBehaviour, IInteractable
         }
     }
 
-    public void HideInfo()
-    {
-        // TODO: Hide Interaction Info
-    }
-
-    public void ShowInfo()
-    {
-        // TODO: Show Interaction Info
-    }
+    public string InfoText => "Heal Me!";
 }

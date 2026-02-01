@@ -2,9 +2,11 @@ using Alchemy.Inspector;
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 using Random = System.Random;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -52,6 +54,9 @@ public class Player : MonoBehaviour
 
     [SerializeField, BoxGroup("Effects")] private ParticleSystem damagingParticleEffects;
 
+    [SerializeField] private Canvas infoCanvas;
+    private TMP_Text infoText;
+
     [SerializeField]
     private int healAmount;
     [SerializeField]
@@ -87,6 +92,9 @@ public class Player : MonoBehaviour
             (PlayerAnimationStates.Death, "Death")
         });
         controller = GetComponent<PlayerController>();
+
+        infoText = infoCanvas.GetComponentInChildren<TMP_Text>();
+        infoCanvas.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -189,6 +197,7 @@ public class Player : MonoBehaviour
         if (GetClosestInteractable(out IInteractable interactable))
         {
             interactable.Interact(this);
+            infoCanvas.gameObject.SetActive(false);
         }
     }
 
@@ -248,7 +257,8 @@ public class Player : MonoBehaviour
         if (other.TryGetComponent(out IInteractable interactable))
         {
             interactablesInRange.Add(interactable);
-            interactable.ShowInfo();
+            infoCanvas.gameObject.SetActive(true);
+            infoText.text = interactable.InfoText;
         }
     }
 
@@ -257,7 +267,7 @@ public class Player : MonoBehaviour
         if (other.TryGetComponent(out IInteractable interactable))
         {
             interactablesInRange.Remove(interactable);
-            interactable.HideInfo();
+            infoCanvas.gameObject.SetActive(false);
         }
     }
 
