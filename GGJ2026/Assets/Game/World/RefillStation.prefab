@@ -126,4 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RefillStation
   refillAmount: 50
-  available: 0
+  available: 1
