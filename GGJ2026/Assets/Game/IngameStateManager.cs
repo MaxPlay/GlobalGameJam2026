@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Alchemy.Inspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,6 +32,9 @@ public class IngameStateManager : GameStateManager
     private IngameHud hudInstance;
     private InputAction peopleListAction;
 
+    [SerializeField, BoxGroup("Ending")] private Transform cinematicStart;
+    [SerializeField, BoxGroup("Ending")] private Transform cinematicEnd;
+
     public void Start()
     {
         people.AddRange(FindObjectsByType<Person>(FindObjectsSortMode.None));
@@ -46,26 +50,34 @@ public class IngameStateManager : GameStateManager
 
     private void Update()
     {
-        if (peopleListAction.WasPressedThisFrame())
+        if (State != IngameState.Over && peopleListAction.WasPressedThisFrame())
             TogglePeopleList();
     }
 
     public void OnDestroy()
     {
-        Destroy(hudInstance);
+        Destroy(hudInstance.gameObject);
         Game.Instance.DisableInput();
     }
 
     public void GameLost()
     {
         State = IngameState.Over;
+        hudInstance.ShowLossOverlay();
         Debug.Log("Game Lost!");
     }
 
     public void GameWon()
     {
         State = IngameState.Over;
+        hudInstance.ShowWinOverlay();
+        hudInstance.GameWin.Setup(this, currentDay, people.Count(p => p.State == Person.PersonState.Alive), people.Count(p => p.State == Person.PersonState.Dead));
         Debug.Log("Game Won!");
+    }
+
+    public void EndGame()
+    {
+        Game.Instance.SwitchState(Game.GameState.Menu);
     }
 
     public void ValidatePeople()
@@ -110,9 +122,9 @@ public class IngameStateManager : GameStateManager
         Game.Instance.EnableInput();
     }
 
-    public void TogglePeopleList()
+    public void TogglePeopleList(bool force = false)
     {
-        if (State != IngameState.Over)
+        if (force || State != IngameState.Over)
             State = hudInstance.TogglePeopleList() ? IngameState.Paused : IngameState.Running;
     }
 }

@@ -11,12 +11,17 @@ public class IngameHud : MonoBehaviour
     [SerializeField]
     private NextDayOverlay nextDay;
     [SerializeField]
+    private GameWinOverlay gameWin;
+    [SerializeField] 
+    private GameLossOverlay gameLoss;
+    [SerializeField]
     private CountIcon pouchIcon;
 
     [SerializeField]
     private int barSegmentSize = 15;
 
     public NextDayOverlay NextDay => nextDay;
+    public GameWinOverlay GameWin => gameWin;
 
     public void Setup(IngameStateManager ingameStateManager)
     {
@@ -52,6 +57,17 @@ public class IngameHud : MonoBehaviour
                 pouchIcon.SetCount(player.PouchCount);
             }
         }
+    }
+
+    public void ShowWinOverlay()
+    {
+        TogglePeopleList();
+        gameWin.peopleListButton.gameObject.SetActive(true);
+    }
+
+    public void ShowLossOverlay()
+    {
+
     }
 
     public bool TogglePeopleList()
