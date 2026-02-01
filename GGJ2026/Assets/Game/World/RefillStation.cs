@@ -10,16 +10,6 @@ public class RefillStation : MonoBehaviour, IInteractable
 
     public Vector3 Position => transform.position;
 
-    public void HideInfo()
-    {
-        // TODO: Hide Interaction Info
-    }
-
-    public void ShowInfo()
-    {
-        // TODO: Show Interaction Info
-    }
-
     public void Interact(Player player)
     {
         if (available)
@@ -28,6 +18,8 @@ public class RefillStation : MonoBehaviour, IInteractable
             available = false;
         }
     }
+
+    public string InfoText => "Interact to Refill Air once";
 
     public void NextDay()
     {

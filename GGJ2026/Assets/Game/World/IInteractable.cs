@@ -6,6 +6,5 @@ public interface IInteractable
 
     void Interact(Player player);
 
-    void ShowInfo();
-    void HideInfo();
+    public string InfoText { get; }
 }
