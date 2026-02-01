@@ -19,7 +19,6 @@ public class CountIcon : MonoBehaviour
 
     private void Start()
     {
-        Debug.Assert(countText, "countText not assigned");
         Debug.Assert(iconImage, "iconImage not assigned");
 
         Refresh();
