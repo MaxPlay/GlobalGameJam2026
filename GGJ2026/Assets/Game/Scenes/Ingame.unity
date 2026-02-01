@@ -12731,6 +12731,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 304bcb777ed357643a187ce813887463, type: 3}
+--- !u!1 &1098053988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098053989}
+  m_Layer: 0
+  m_Name: Cinematic2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1098053989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098053988}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.41870725, y: 0.1479208, z: -0.069310345, w: 0.89330834}
+  m_LocalPosition: {x: -0.63577366, y: 6.4757843, z: -6.1477556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1190350209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1104045019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14101,8 +14132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IngameStateManager
   hudPrefab: {fileID: 2408611253850801072, guid: 4c52535fda3cea543bb2baa9d60bc77f, type: 3}
-  cinematicStart: {fileID: 0}
-  cinematicEnd: {fileID: 0}
+  cinematicStart: {fileID: 2057436705}
+  cinematicEnd: {fileID: 1098053989}
   cinematicDuration: 30
 --- !u!4 &1190350209
 Transform:
@@ -14116,7 +14147,9 @@ Transform:
   m_LocalPosition: {x: 2.54782, y: -0, z: -5.26015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2057436705}
+  - {fileID: 1098053989}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1194089803
@@ -24760,6 +24793,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb59053229b71ab4f8c78ff51daa623f, type: 3}
+--- !u!1 &2057436704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057436705}
+  m_Layer: 0
+  m_Name: Cinematic1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2057436705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057436704}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40141422, y: 0.12629898, z: -0.055971734, w: 0.9054184}
+  m_LocalPosition: {x: -21.102322, y: 6.8580523, z: 31.619816}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1190350209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2073318067
 PrefabInstance:
   m_ObjectHideFlags: 0
