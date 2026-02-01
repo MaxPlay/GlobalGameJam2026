@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class IngameStateManager : GameStateManager
 {
@@ -28,6 +29,7 @@ public class IngameStateManager : GameStateManager
     [SerializeField]
     private IngameHud hudPrefab;
     private IngameHud hudInstance;
+    private InputAction peopleListAction;
 
     public void Start()
     {
@@ -38,6 +40,14 @@ public class IngameStateManager : GameStateManager
         hudInstance.Setup(this);
         Game.Instance.EnableInput();
         StartCoroutine(NextDayRoutine(true));
+
+        peopleListAction = InputSystem.actions.FindAction("PeopleList");
+    }
+
+    private void Update()
+    {
+        if (peopleListAction.WasPressedThisFrame())
+            TogglePeopleList();
     }
 
     public void OnDestroy()
@@ -98,5 +108,11 @@ public class IngameStateManager : GameStateManager
         yield return hudInstance.NextDay.Hide();
 
         Game.Instance.EnableInput();
+    }
+
+    public void TogglePeopleList()
+    {
+        if (State != IngameState.Over)
+            State = hudInstance.TogglePeopleList() ? IngameState.Paused : IngameState.Running;
     }
 }

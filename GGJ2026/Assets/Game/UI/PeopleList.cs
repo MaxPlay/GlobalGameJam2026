@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class PeopleList : MonoBehaviour
 {
     private readonly List<PeopleListEntry> entries = new();
+
+    public bool IsVisible { get; set; }
 
     [SerializeField]
     private PeopleListEntry entryPrefab;
