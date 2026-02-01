@@ -1398,6 +1398,7 @@ MonoBehaviour:
   hudPrefab: {fileID: 2408611253850801072, guid: 4c52535fda3cea543bb2baa9d60bc77f, type: 3}
   cinematicStart: {fileID: 1723158050}
   cinematicEnd: {fileID: 924571478}
+  cinematicDuration: 30
 --- !u!1001 &2129241649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1515,6 +1516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8238937242725629651, guid: e4b6b86a63ab1fa42baf510289351d61, type: 3}
+      propertyPath: injectionClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 160c1c2e06a9949418804056831abf71, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

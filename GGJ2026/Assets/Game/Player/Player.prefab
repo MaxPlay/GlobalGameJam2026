@@ -9890,6 +9890,7 @@ GameObject:
   - component: {fileID: 4961492936772580732}
   - component: {fileID: 6663884862256991466}
   - component: {fileID: 2118647502669727982}
+  - component: {fileID: 1369398858265408284}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9958,6 +9959,16 @@ MonoBehaviour:
   postEffectVolume: {fileID: 1772711073118512237}
   baseVignetteColor: {r: 0.078431375, g: 0.043137256, b: 0.12156863, a: 1}
   damageVignetteColor: {r: 0.079476684, g: 0.3584906, b: 0.14634463, a: 1}
+  audioSource: {fileID: 1369398858265408284}
+  walkClips:
+  - {fileID: 8300000, guid: 4a58052a6639cf4499499cbf5cd5f36c, type: 3}
+  - {fileID: 8300000, guid: 36b2b002de8efe3439ea4d1525a745f7, type: 3}
+  - {fileID: 8300000, guid: 8533315586e3c1142b12f420d8552156, type: 3}
+  - {fileID: 8300000, guid: e6a40d841653dce4391aa4adbbae941f, type: 3}
+  - {fileID: 8300000, guid: 42981047e9abe9345ba303836a8fe5ad, type: 3}
+  - {fileID: 8300000, guid: 4c98eeea5f94a2c40b5e330fb6b890fb, type: 3}
+  injectionClip: {fileID: 8300000, guid: 160c1c2e06a9949418804056831abf71, type: 3}
+  refillClip: {fileID: 8300000, guid: 30f3da15f57e04f448480bc474f2735f, type: 3}
   damagingParticleEffects: {fileID: 6752592550719185201}
   healAmount: 25
   pouchFillAmount: 200
@@ -10037,6 +10048,103 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!82 &1369398858265408284
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4472231152488332029}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &7465821957300130652
 PrefabInstance:
   m_ObjectHideFlags: 0

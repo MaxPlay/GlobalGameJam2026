@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Random = System.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
@@ -43,6 +44,11 @@ public class Player : MonoBehaviour
     private Color baseVignetteColor;
     [SerializeField, BoxGroup("Effects")]
     private Color damageVignetteColor;
+
+    [SerializeField, BoxGroup("SFX")] private AudioSource audioSource;
+    [SerializeField, BoxGroup("SFX")] private AudioClip[] walkClips;
+    [SerializeField, BoxGroup("SFX")] private AudioClip injectionClip;
+    [SerializeField, BoxGroup("SFX")] private AudioClip refillClip;
 
     [SerializeField, BoxGroup("Effects")] private ParticleSystem damagingParticleEffects;
 
@@ -104,7 +110,7 @@ public class Player : MonoBehaviour
 
         if (distance > 0)
         {
-            animations.TryPlayState(isLookingUp ? PlayerAnimationStates.WalkUp : PlayerAnimationStates.Walk);
+            animations.TryPlayState(isLookingUp ? PlayerAnimationStates.WalkUp : PlayerAnimationStates.Walk, 0, null, false, new Animatable.AnimationEvent(PlayStepSound, 3), new Animatable.AnimationEvent(PlayStepSound, 7));
         }
         else
         {
@@ -114,6 +120,12 @@ public class Player : MonoBehaviour
         float multiplier = sprinting ? sprintingMaskReductionMultiplier : distanceMaskReductionMultiplier;
         float reduction = distance * multiplier;
         ReduceMask(reduction);
+    }
+
+    private void PlayStepSound()
+    {
+        audioSource.clip = walkClips[UnityEngine.Random.Range(0, walkClips.Length - 1)];
+        audioSource.Play();
     }
 
     private void ReduceMask(float reduction)
@@ -212,14 +224,22 @@ public class Player : MonoBehaviour
                 animations.locked = false;
                 controller.enabled = true;
                 animations.TryPlayState(PlayerAnimationStates.Idle);
-            }, true);
+            }, true, new Animatable.AnimationEvent(PlayInjectionSound, 5));
 
         // TODO: Visualization
+    }
+
+    private void PlayInjectionSound()
+    {
+        audioSource.clip = injectionClip;
+        audioSource.Play();
     }
 
     public void RefillMask(int amount)
     {
         maskPoints = Mathf.Min(maskPoints + amount, TotalMaskPoints);
+        audioSource.clip = refillClip;
+        audioSource.Play();
         // TODO: Visualization
     }
 
