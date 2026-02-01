@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Configuration
   m_EditorClassIdentifier: Assembly-CSharp::GameConfiguration
   splash: 
-  menu: 
+  menu: MainMenu
   ingame: 
   options: 
   credits: 
