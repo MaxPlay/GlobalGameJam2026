@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameConfiguration
   splash: 
   menu: MainMenu
-  ingame: 
+  ingame: Ingame
   options: 
   credits: 
   rootCanvas: {fileID: 6158435024434331636, guid: f8be48962dba59b4188986905e065bbf, type: 3}

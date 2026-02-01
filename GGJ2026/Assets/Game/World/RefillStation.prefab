@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 520788514162063394}
   - component: {fileID: 2838419147040755274}
   - component: {fileID: 4841640912940497229}
+  - component: {fileID: 9192136286580768558}
   m_Layer: 0
   m_Name: RefillStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &521033032100552028
 Transform:
@@ -111,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5408329, y: 0.5035322, z: 0.3667729}
-  m_Center: {x: 0.09015908, y: 0.2517661, z: 0.003129132}
+  m_Size: {x: 0.5408329, y: 1.5952092, z: 0.3667729}
+  m_Center: {x: 0.09015909, y: 0.7976046, z: 0.0031291246}
 --- !u!114 &4841640912940497229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +128,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RefillStation
   refillAmount: 50
   available: 1
+--- !u!135 &9192136286580768558
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671188413350815921}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.93
+  m_Center: {x: 0.09015908, y: 0.2517661, z: 0.003129132}

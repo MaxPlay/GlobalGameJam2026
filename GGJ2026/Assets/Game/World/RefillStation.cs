@@ -6,7 +6,7 @@ public class RefillStation : MonoBehaviour, IInteractable
     private int refillAmount;
 
     [SerializeField]
-    private bool available = false;
+    private bool available = true;
 
     public Vector3 Position => transform.position;
 
